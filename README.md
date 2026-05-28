@@ -59,20 +59,6 @@ Then browse to: **http://localhost:3000/brainstorm-ai**
 Sign in, click **New board**, name it, open it. The canvas appears with
 a floating prompt bar at the bottom. Type what you want.
 
-### Prompts to try
-
-| Prompt | What happens |
-|---|---|
-| `Plan a 3-day trip to Montreal` | AI asks about budget and interests, then builds a ~15-node tree with specific stops and prices |
-| `Design a notification system` | AI asks about scale and channels, then builds a flow diagram with intentional edges and a retry loop |
-| `Compare React vs Vue vs Svelte for a small team` | AI builds a comparison structure |
-| `Build a launch plan for a fintech SaaS, $50K budget, 3 months` | Already specific — AI skips questions and builds directly |
-| `Rename Day 2 to Plateau day` | Trivial edit — no clarification, just renames |
-
-After the AI builds, the pill above the input shows what it made and 2–3
-suggested next moves. Type any of them — or your own — to refine the
-diagram in the same conversation.
-
 ### Manual editing always works
 
 You can drag any node, click to rename it, cycle its color, connect it
