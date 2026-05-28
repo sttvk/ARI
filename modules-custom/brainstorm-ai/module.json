@@ -1,0 +1,42 @@
+{
+  "id": "brainstorm-ai",
+  "group": "Creative",
+  "name": "Brainstorm AI",
+  "description": "Prompt-driven mind-map editing. Type instructions, watch the canvas build and evolve.",
+  "version": "0.1.0",
+  "author": "ARI Hackathon",
+  "icon": "Sparkles",
+  "enabled": true,
+  "fullscreen": false,
+  "menuPriority": 14,
+  "permissions": {
+    "database": true,
+    "api": true,
+    "dashboard": false
+  },
+  "routes": [
+    {
+      "path": "/brainstorm-ai",
+      "label": "Brainstorm AI",
+      "icon": "Sparkles",
+      "sidebarPosition": "main"
+    }
+  ],
+  "dependencies": {
+    "modules": ["brainstorm"],
+    "coreFeatures": []
+  },
+  "database": {
+    "tables": []
+  },
+  "npmDependencies": {
+    "@anthropic-ai/sdk": "^0.71.0",
+    "dagre": "^0.8.5",
+    "@types/dagre": "^0.7.52"
+  },
+  "topBarIcon": {
+    "icon": "Sparkles",
+    "route": "/brainstorm-ai",
+    "tooltip": "Brainstorm AI"
+  }
+}
