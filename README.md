@@ -1,36 +1,97 @@
-# ARI.Software
+# Brainstorm AI — a hackathon module for ARI
 
-**Premier Personal Productivity.**
+Type what you want to diagram in plain English. The AI asks clarifying
+questions when the request is genuinely ambiguous, builds the diagram, and
+invites you to iterate. Works for mind maps, system designs, comparisons,
+plans, journeys — anything that has structure.
 
-Open Source. Self-Hosted. Full Data Control. Fully Extendable. AI Native. Dozens of Built-In Modules And Build Your Own In Minutes. No Coding Required.
+Built as a custom module for the [ARI](https://ari.software) open-source
+productivity OS. Drops into ARI's existing brainstorming canvas and adds a
+conversational AI layer on top.
 
-Engineered for those who want complete command over the software that runs their life. The first AI-enabled No Code workspace that can be completely customized to your workflow and grows with you. Build entirely new modules in minutes. Where mastery, modularity, and AI work in your favour so you can do your best work and live your best life.
+---
 
-https://ari.software
+## What it does
 
-## Quick Start
+- **Conversational design** — type your idea, the AI clarifies what it
+  needs, then builds the diagram.
+- **Iterative refinement** — after generation, the AI suggests next
+  adjustments in a pill above the input ("want me to add a budget
+  breakdown or stretch it to 4 days?"). Type a follow-up and it extends
+  the diagram in place.
+- **Smart structure** — the model picks the right shape for your topic
+  (tree for plans, DAG for systems, matrix for comparisons, network for
+  concept maps) without being told.
+- **Real-world judgment** — knows a 3-day trip fits ~6 stops, that a 1M
+  DAU system needs different scaffolding than 1K DAU, that a 6-month
+  study plan looks different from a 2-week one.
+- **Full manual editing alongside** — drag nodes, rename, recolor,
+  connect with new edges, delete — every original Brainstorm capability
+  works at the same time as the AI flow.
+- **Auto-layout** — clean left-to-right layout for trees, top-to-bottom
+  for system flows, via dagre. No positioning required.
 
-Install ARI with a single command:
+---
 
-**macOS / Linux:**
+## Quick start
+
+You need a working [ARI install](https://ari.software/docs) and an
+Anthropic API key (https://console.anthropic.com/settings/keys — new
+accounts get free credit).
+
 ```bash
-/bin/bash -c "$(curl -fsSL https://ari.software/install)"
+# Install the two extra packages the module needs
+pnpm add @anthropic-ai/sdk dagre @types/dagre
+
+# Add your key to .env.local at the ARI root
+echo "ANTHROPIC_API_KEY=sk-ant-..." >> .env.local
+
+# Start (or restart) ARI
+./ari start
 ```
 
-**Windows** (PowerShell):
-```powershell
-irm https://ari.software/install-win | iex
-```
+Then browse to: **http://localhost:3000/brainstorm-ai**
 
-The installer handles everything — dependencies, database setup, and configuration.
+---
 
-## Documentation
+## How to use it
 
-Full documentation, guides, and module development resources:
+Sign in, click **New board**, name it, open it. The canvas appears with
+a floating prompt bar at the bottom. Type what you want.
 
-https://ari.software/docs
+### Prompts to try
 
-## Need Help?
+| Prompt | What happens |
+|---|---|
+| `Plan a 3-day trip to Montreal` | AI asks about budget and interests, then builds a ~15-node tree with specific stops and prices |
+| `Design a notification system` | AI asks about scale and channels, then builds a flow diagram with intentional edges and a retry loop |
+| `Compare React vs Vue vs Svelte for a small team` | AI builds a comparison structure |
+| `Build a launch plan for a fintech SaaS, $50K budget, 3 months` | Already specific — AI skips questions and builds directly |
+| `Rename Day 2 to Plateau day` | Trivial edit — no clarification, just renames |
 
-Reach out to us at hello@ari.software
+After the AI builds, the pill above the input shows what it made and 2–3
+suggested next moves. Type any of them — or your own — to refine the
+diagram in the same conversation.
 
+### Manual editing always works
+
+You can drag any node, click to rename it, cycle its color, connect it
+to others, or delete it. There's a toolbar (top-left of the canvas) with:
+
+- **Add idea** — drop a blank node
+- **Auto-layout** — re-tidy the diagram with dagre
+- **Save** — persist your manual changes
+- **Lock / Unlock** — prevent accidental edits while presenting
+
+---
+
+## Built on ARI
+
+This module sits in `modules-custom/brainstorm-ai/` and depends on ARI's
+core Brainstorm module — they share the same database tables, so boards
+created here are also visible in `/brainstorm`.
+
+ARI is Apache 2.0 licensed by Panthera Ventures Inc. See [LICENSE](LICENSE)
+for the full terms. This repository is a derivative work for hackathon
+purposes; all upstream code, design, and platform architecture remain
+the property of the ARI team.
